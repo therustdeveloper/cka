@@ -1,3 +1,8 @@
 .idea
 
 **pod-tolerate.yaml
+
+**angelina.key
+**angelina.csr
+**csr-angelina.yaml
+**angelina.crt
