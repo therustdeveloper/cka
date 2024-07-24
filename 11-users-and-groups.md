@@ -133,6 +133,12 @@ kubectl config use-context kind-cka                                             
 Switched to context "kind-cka".
 ```
 
+## Bind a Role to a Group
+
+```shell
+kubectl create rolebinding pod-reader-bind --role=pod-reader --group=developers
+```
+
 ## Resources
 
 - [Create Private Key](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#create-private-key)
