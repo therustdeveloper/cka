@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nomount-sa-pod
+  name: nomount-sa-pod
+spec:
+  serviceAccountName: nomount-sa
+  containers:
+  - image: nginx
+    name: nomount-sa-pod
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
