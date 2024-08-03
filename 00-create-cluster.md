@@ -13,13 +13,13 @@ brew install kind
 ** This is the main cluster we are going to use.
 
 ```shell
-kind create cluster --name cka --config cluster.yaml
+kind create cluster --name cka --config yaml-definitions/cluster.yaml
 ```
 
 ## Create a HA Cluster
 
 ```shell
-kind create cluster --name cka-ha --config ha-cluster-one.yaml
+kind create cluster --name cka-ha --config yaml-definitions/ha-cluster-one.yaml
 ```
 
 ## Delete a Cluster

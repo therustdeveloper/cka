@@ -3,7 +3,7 @@
 ## Create a Kind cluster
 
 ```shell
-kind create cluster --name cka --config cluster.yaml
+kind create cluster --name cka --config yaml-definitions/cluster.yaml
 ```
 
 ## Get the IP address of the control plane

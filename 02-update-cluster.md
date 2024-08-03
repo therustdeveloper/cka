@@ -5,7 +5,7 @@ Organize this note with all the process to upgrade the control-plane and worker 
 ## Create the cluster
 
 ```shell
-kind create cluster --name cka --config cluster.yaml
+kind create cluster --name cka --config yaml-definitions/cluster.yaml
 ```
 
 ## Connect to cka-control-plane

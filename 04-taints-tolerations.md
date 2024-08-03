@@ -81,10 +81,10 @@ The `taint` had an effect of `NoSchedule`, a value of `special-user`, a key name
 ### Create a Pod template
 
 ```shell
-k run pod-tolerate --image=nginx --dry-run=client -o yaml > pod-tolerate.yaml
+k run pod-tolerate --image=nginx --dry-run=client -o yaml > yaml-definitions/pod-tolerate.yaml
 ```
 
-### Add tolerations to the pod-tolerate.yaml file
+### Add tolerations to the yaml-definitions/pod-tolerate.yaml file
 
 ```shell
 spec:
@@ -98,7 +98,7 @@ spec:
 ### Submit the YAML file to the API Server
 
 ```shell
-kubectl create -f pod-tolerate.yaml
+kubectl create -f yaml-definitions/pod-tolerate.yaml
 pod/pod-tolerate created
 ```
 

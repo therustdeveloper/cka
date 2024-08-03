@@ -21,7 +21,7 @@ kubectl create role pod-reader --verb=get,list,watch --resource=pods
 ### Generate a YAML definition of the Role
 
 ```shell
-kubectl create role pod-reader --verb=get,list,watch --resource=pods --dry-run=client -o yaml > role.yaml
+kubectl create role pod-reader --verb=get,list,watch --resource=pods --dry-run=client -o yaml > yaml-definitions/role.yaml
 ```
 
 ## Role Bindings
