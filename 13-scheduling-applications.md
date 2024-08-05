@@ -112,4 +112,7 @@ kubectl apply -f yaml-definitions/nginx-cka-worker.yaml
 
 ```shell
 kubectl get pod nginx-cka-worker -o wide
+
+NAME               READY   STATUS    RESTARTS   AGE   IP           NODE         NOMINATED NODE   READINESS GATES
+nginx-cka-worker   1/1     Running   0          47s   10.244.1.2   cka-worker   <none>           <none>
 ```
