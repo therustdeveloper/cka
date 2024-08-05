@@ -116,3 +116,87 @@ kubectl get pod nginx-cka-worker -o wide
 NAME               READY   STATUS    RESTARTS   AGE   IP           NODE         NOMINATED NODE   READINESS GATES
 nginx-cka-worker   1/1     Running   0          47s   10.244.1.2   cka-worker   <none>           <none>
 ```
+
+## Node and Pod Affinity
+
+This configuration can be flexible, an `affinity` prefers the `Pod` be scheduled to a node with the label `SSD` but will schedule to node `LINUX` if `none` exists.
+
+### Create a brand-new Pod
+
+```shell
+kubectl run affinity --image=nginx --port=80 --dry-run=client -o yaml > yaml-definitions/affinity.yaml
+```
+
+### Append the following configuration below spec
+
+```shell
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                  - linux
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - preference:
+            matchExpressions:
+              - key: disktyp
+                operator: In
+                values:
+                  - ssd
+          weight: 1
+```
+
+Let's schedule our Pod with the following command:
+
+```shell
+kubectl apply -f yaml-definitions/affinity.yaml
+pod/affinity created
+```
+
+### Validate the location of the pod
+
+```shell
+kubectl get po -o wide
+
+NAME       READY   STATUS    RESTARTS   AGE   IP           NODE         NOMINATED NODE   READINESS GATES
+affinity   1/1     Running   0          52s   10.244.1.3   cka-worker   <none>           <none>
+```
+
+### Check the node labels
+
+```shell
+kubectl get no cka-worker --show-labels
+
+NAME         STATUS   ROLES    AGE   VERSION   LABELS
+cka-worker   Ready    <none>   71m   v1.29.0   beta.kubernetes.io/arch=arm64,beta.kubernetes.io/os=linux,kubernetes.io/arch=arm64,kubernetes.io/hostname=cka-worker,kubernetes.io/os=linux
+```
+
+### Pod Affinity
+
+The `Pod` will only be schedule to a node that already has an `nginx` Pod running.
+
+#### Create a Pod that has the label run=nginx
+
+```shell
+kubectl run nginx --image=nginx --port=80
+pod/nginx created
+```
+
+#### Apply the pod-node-affinity.yaml file
+
+```shell
+kubectl apply -f yaml-definitions/pod-node-affinity.yaml
+pod/pod-affinity created
+```
+
+#### Validate if the pods are in the same node
+
+```shell
+kubectl get pod -o wide
+NAME           READY   STATUS    RESTARTS   AGE   IP           NODE         NOMINATED NODE   READINESS GATES
+nginx          1/1     Running   0          26m   10.244.1.4   cka-worker   <none>           <none>
+pod-affinity   1/1     Running   0          75s   10.244.1.5   cka-worker   <none>           <none>
+```
