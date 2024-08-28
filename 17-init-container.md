@@ -43,10 +43,12 @@ NAME   READY   STATUS     RESTARTS   AGE
 init   0/1     Init:0/1   0          56s
 ```
 
-Eventually you will get:
+### Create the init-svc
 
 ```shell
+kubectl create svc clusterip init-svc --tcp 80
 
+service/init-svc created
 ```
 
 ## Delete the init Pod
