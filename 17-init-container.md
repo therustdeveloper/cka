@@ -56,3 +56,9 @@ service/init-svc created
 ```shell
 kubectl delete pod init
 ```
+
+## Delete the service
+
+```shell
+kubectl delete svc init-svc
+```
