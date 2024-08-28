@@ -235,3 +235,69 @@ S!B\*d$zDsb=
 kubectl delete pod secret-pod
 pod "secret-pod" deleted
 ```
+
+### Use a Secret inside a Pod via an Environment Variable
+
+#### Create the secret-env Definition
+
+```shell
+kubectl run secret-env --image=busybox --command "sh" "c" "printenv DEV_USER DEV_PASS; sleep 8200" --env=DEV_PASS=password --dry-run=client -o yaml > yaml-definitions/secret-env.yaml
+```
+
+#### Change the c to -c
+
+Open the file `yaml-definitions/secret-env.yaml` and change the `c` to `-c`.
+
+#### Replace the environment variables with the following
+
+```shell
+env:
+  - name: DEV_USER
+    valueFrom:
+      secretKeyRef:
+        name: dev-login
+        key: username
+  - name: DEV_PASS
+    valueFrom:
+      secretKeyRef:
+        name: dev-login
+        key: password
+```
+
+#### Apply the secret-env Definition
+
+```shell
+kubectl apply -f yaml-definitions/secret-env.yaml
+pod/secret-env created
+```
+
+#### Validate the secret-pod
+
+```shell
+kubectl get pod
+
+NAME         READY   STATUS    RESTARTS   AGE
+secret-env   1/1     Running   0          35s
+```
+
+#### Print the container logs
+
+```shell
+kubectl logs secret-env
+dev
+S!B\*d$zDsb=
+```
+
+#### Delete the Pod
+
+```shell
+kubectl delete pod secret-env
+pod "secret-env" deleted
+```
+
+### Delete the Secret
+
+```shell
+kubectl delete secret dev-login
+secret "dev-login" deleted
+```
