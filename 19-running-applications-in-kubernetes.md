@@ -262,6 +262,48 @@ REVISION  CHANGE-CAUSE
 4         reverted back to the original
 ```
 
+## Exposing Deployments
+
+### Create the Service Definition
+
+```shell
+kubectl expose deploy apache --name apache-svc --port 80 --type ClusterIP --dry-run=client -o yaml > yaml-definitions/apache-svc.yaml
+```
+
+### Identify the application to expose
+
+In the `yaml-definitions/apache-svc.yaml` file identify the following section:
+
+```yaml
+spec:
+  selector:
+    app: apache
+```
+
+Remove the following configuration from `yaml-definitions/apache-svc.yaml` file:
+
+```yaml
+loadBalancer: {}
+```
+
+The `selector:` section implements a key-value pairs to search the deployment we are exposing.
+
+### Deploy the service
+
+```shell
+kubectl apply -f yaml-definitions/apache-svc.yaml
+service/apache-svc created
+```
+
+### Validate the service
+
+```shell
+kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+apache-svc   ClusterIP   10.101.238.113   <none>        80/TCP    6m33s
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   142d
+```
+
 ## Delete the Deployment
 
 ### Delete Nginx Deployment
