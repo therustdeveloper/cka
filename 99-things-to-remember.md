@@ -7,3 +7,8 @@ Remember that the manifests for control plane components are in the `/etc/kubern
 ```shell
 cat /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
+
+## Validate Command Syntax
+
+- To validate what values go where in YAML file during the exam, you can use `kubectl explain`.
+- The command `kubectl explain deploy.spec.strategy` will list values that are available for input in the spec field.

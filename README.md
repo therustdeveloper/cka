@@ -21,6 +21,7 @@
 - [16 - Multicontainer Pods](16-multicontainer-pods.md)
 - [17 - Init Container](17-init-container.md)
 - [18 - ConfigMaps & Secrets](18-configmaps-and-secrets.md)
+- [19 - Running Applications in Kubernetes](19-running-applications-in-kubernetes.md)
 
 ## Notes
 
