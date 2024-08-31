@@ -22,6 +22,7 @@
 - [17 - Init Container](17-init-container.md)
 - [18 - ConfigMaps & Secrets](18-configmaps-and-secrets.md)
 - [19 - Running Applications in Kubernetes](19-running-applications-in-kubernetes.md)
+- [20 - Application Maintenance](20-application-maintenance.md)
 
 ## Notes
 

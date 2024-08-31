@@ -26,6 +26,8 @@ kind create cluster --name cka-ha --config yaml-definitions/ha-cluster-one.yaml
 
 ```shell
 kind delete cluster --name cka
+Deleting cluster "cka" ...
+Deleted nodes: ["cka-worker" "cka-control-plane" "cka-worker2"]
 ```
 
 ## Get the nodes
