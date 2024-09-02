@@ -85,7 +85,7 @@ NAME                     STATUS   ROLES           AGE     VERSION
 cka-temp-control-plane   Ready    control-plane   2m34s   v1.29.0
 ```
 
-Even though we deleted `cka-temp-worker` node, the node is still running and cab be accessed from outside of Kubernetes.
+Even though we deleted `cka-temp-worker` node, the node is still running and can be accessed from outside of Kubernetes.
 
 ### Connect to the deleted node
 
