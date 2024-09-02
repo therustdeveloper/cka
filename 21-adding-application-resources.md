@@ -4,7 +4,11 @@
 - We can create additional tokens on demand.
 - We can see the bootstrap token mechanism enabled in the kind Kubernetes cluster in the `/etc/kubernetes/manifests/kube-apiserver.yaml` file.
 
-## Identify the Kubernetes API Server Configuration
+## Create Kind cluster
+
+Follow the instructions to create cluster in [Create Cluster](00-create-cluster.md).
+
+### Identify the Kubernetes API Server Configuration
 
 ```shell
 cd /etc/kubernetes/manifests/
@@ -25,9 +29,9 @@ containers:
 - These tokens were primarily built for `kubeadm` but can also be used in other scenarios without kubeadm, such as with third-party applications.
 - A `bootstrap token` works much like a `Service Account` token in that the token allows the third-party application to authenticate with the `Kubernetes API` and communicate with objects inside of a cluster.
 
-## Generate a token join command
+### Generate a token join command
 
-### Validate current cluster
+#### Validate current cluster
 
 ```shell
 kubectl get nodes
@@ -37,25 +41,21 @@ cka-worker          Ready    <none>          13m   v1.29.0
 cka-worker2         Ready    <none>          13m   v1.29.0
 ```
 
-### Connect to the cluster
+#### Connect to the cluster
 
 ```shell
 docker exec -it cka-control-plane bash
 root@cka-control-plane:/#
 ```
 
-### Generate the join token
+#### Generate the join token
 
 ```shell
 kubeadm token create --print-join-command
 kubeadm join cka-control-plane:6443 --token jybmm9.cwytkr9romnfg40v --discovery-token-ca-cert-hash sha256:08da489525c8d78bf766b57340e6542acd1f6a361a29a6052b6db6fa3bdb21a3
 ```
 
-## Create Kind cluster
-
-Follow the instructions to create cluster in [Create Cluster](00-create-cluster.md).
-
-### Create a temporal cluster
+## Create a temporal cluster
 
 ```shell
 kind create cluster --name cka-temp --config yaml-definitions/cluster2.yaml
