@@ -1,4 +1,4 @@
-# Communication in a Kubernetes Cluster
+# Communication in Kubernetes Cluster
 
 ## Configuring DNS
 
