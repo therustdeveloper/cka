@@ -24,7 +24,8 @@
 - [19 - Running Applications in Kubernetes](19-running-applications-in-kubernetes.md)
 - [20 - Application Maintenance](20-application-maintenance.md)
 - [21 - Adding Application Resources](21-adding-application-resources.md)
+- [22 - Communication Kubernetes Cluster](22-communication-kubernetes-cluster.md)
 
 ## Notes
 
-- [99 - Things to Remember](99-things-to-remember.md)
+- [99 - To Remember](99-to-remember.md)
