@@ -12,3 +12,11 @@ cat /etc/kubernetes/manifests/kube-apiserver.yaml
 
 - To validate what values go where in YAML file during the exam, you can use `kubectl explain`.
 - The command `kubectl explain deploy.spec.strategy` will list values that are available for input in the spec field.
+
+## Commands to restart the kubelet
+
+```shell
+systemctl stop kubelet
+systemctl restart kubelet
+systemctl daemon-reload
+```
