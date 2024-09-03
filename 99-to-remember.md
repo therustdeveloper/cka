@@ -1,4 +1,19 @@
-# Things to remember
+# To Remember
+
+## Static Pods Location
+
+```shell
+cd /etc/kubernetes/manifests/
+
+docker exec -it cka-control-plane bash
+root@cka-control-plane:/# cd /etc/kubernetes/manifests/
+root@cka-control-plane:/etc/kubernetes/manifests# ls -l
+total 16
+-rw------- 1 root root 2404 Sep  3 12:09 etcd.yaml
+-rw------- 1 root root 3897 Sep  3 12:33 kube-apiserver.yaml
+-rw------- 1 root root 3427 Sep  3 12:09 kube-controller-manager.yaml
+-rw------- 1 root root 1463 Sep  3 12:09 kube-scheduler.yaml
+```
 
 ## Control Plane Container
 
