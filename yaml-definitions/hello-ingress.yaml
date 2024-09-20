@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello
+spec:
+  rules:
+    - host: hello.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: hello-svc
+                port:
+                  number: 80
+          - backend:
+              service:
+                name: nginx-svc
+                port:
+                  number: 8080
+            path: /app
+            pathType: Exact
