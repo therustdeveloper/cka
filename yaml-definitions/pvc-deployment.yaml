@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend0113
+  name: frontend0113
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend0113
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend0113
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+        volumeMounts:
+          - name: vol-33
+            mountPath: "/usr/share/nginx/html"
+      volumes:
+      - name: vol-33
+        persistentVolumeClaim:
+          claimName: claim-02833
