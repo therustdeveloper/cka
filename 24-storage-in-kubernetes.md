@@ -8,6 +8,21 @@
 - The `hostPath` volume
 - The `NFS` volume
 
+## Access Modes
+
+- `ReadWriteOnce` only one node can mount the volume, read and write to it
+- `ReadOnlyMany` multiple nodes can mount the volume for reading only
+- `ReadWriteMany` multiple nodes can mount the volume for reading and writing
+- `ReadWriteOncePod` only one node can mount the volume for reading and writing
+- A `Persistent Volume` can have more than one access mode
+- A `Persistent Volume Claim` can only have one access mode
+- Even if there are many modes specified in the PV YAML, the node can only utilize once access mode at a time
+
+## Important
+
+- Certain volumes only support certain access modes
+- `hostPath` is not able to support `ReadOnlyMany`, `ReadWriteMany`, or `ReadWriteOncePod`
+
 ## Create a cluster
 
 Follow the instructions in [00 - Create Cluster](00-create-cluster.md)
