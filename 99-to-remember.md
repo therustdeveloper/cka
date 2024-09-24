@@ -36,7 +36,23 @@ systemctl restart kubelet
 systemctl daemon-reload
 ```
 
+## Create a tool to run commands using Alpine
+
+```shell
+k run tool --image alpine -it -- sh
+If you don't see a command prompt, try pressing enter.
+/ #
+```
+
+### Install curl
+
+```shell
+/ # apk add --no-cache curl
+```
+
 ## Create busybox image
+
+### Creating a YAML Definition
 
 ```shell
 k run log-collector --image busybox --command sleep --command "3600" --dry-run=client -o yaml > yaml-definitions/log-collector.yaml
