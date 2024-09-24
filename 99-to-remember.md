@@ -46,3 +46,7 @@ Remove from the file:
 
 - creationTimestamp: null
 - status: {}
+
+## Copy and Paste in Vim
+
+Being able to `copy` and `paste` in `Vim` can save time on the exam. Select lines by pressing `Shift + V` on your keyboard, followed by the `up` and `down` arrows to select. Once you've selected all the lines, press the `Y` key to copy and the `P` key to paste.
