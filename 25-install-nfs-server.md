@@ -52,6 +52,15 @@ NAME                    NAMESPACE       REVISION        UPDATED                 
 nfs-ganesha-server      default         1               2024-09-23 19:27:27.694125 -0500 -05    deployed        nfs-server-provisioner-1.8.0    4.0.8
 ```
 
+## List the Storage Classes in Kind
+
+```shell
+k get storageclass
+NAME                 PROVISIONER                                               RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+nfs                  cluster.local/nfs-ganesha-server-nfs-server-provisioner   Delete          Immediate              true                   6m11s
+standard (default)   rancher.io/local-path                                     Delete          WaitForFirstConsumer   false                  138m
+```
+
 ## References
 
 - [NFS Ganesha Server](https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/master/charts/nfs-server-provisioner/README.md)
