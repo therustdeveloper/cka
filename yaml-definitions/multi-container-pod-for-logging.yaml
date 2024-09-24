@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  containers:
+    - command: ['sh', '-c', 'while true; do echo "$(date)": "I am a busybox container"; sleep 5; done']
+      image: busybox
+      name: busybox
+    - command: ['sh', '-c', 'while true; do echo "$(date)": "I am a sidecar container"; sleep 5; done']
+      image: busybox
+      name: sidecar
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
