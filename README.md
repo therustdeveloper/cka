@@ -28,6 +28,7 @@
 - [23 - Ingress and Ingress Controllers](23-ingress-and-ingress-controllers.md)
 - [24 - Storage in Kubernetes](24-storage-in-kubernetes.md)
 - [25 - Install NFS Server](25-install-nfs-server.md)
+- [26 - HostPath Implementation with NFS](26-hostpath-implementation-with-nfs.md)
 
 ## Notes
 
