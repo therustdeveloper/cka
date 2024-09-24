@@ -35,3 +35,14 @@ systemctl stop kubelet
 systemctl restart kubelet
 systemctl daemon-reload
 ```
+
+## Create busybox image
+
+```shell
+k run log-collector --image busybox --command sleep --command "3600" --dry-run=client -o yaml > yaml-definitions/log-collector.yaml
+```
+
+Remove from the file:
+
+- creationTimestamp: null
+- status: {}

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: log-collector
+  name: log-collector
+spec:
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: busybox
+    name: log-collector
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
