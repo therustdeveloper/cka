@@ -55,3 +55,4 @@ nfs-ganesha-server      default         1               2024-09-23 19:27:27.6941
 ## References
 
 - [NFS Ganesha Server](https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/master/charts/nfs-server-provisioner/README.md)
+- [NFS in Kind Cluster](https://cloudyuga.guru/blogs/nfs-kind/)
