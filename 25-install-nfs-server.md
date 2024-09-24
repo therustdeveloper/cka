@@ -51,3 +51,7 @@ helm list
 NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
 nfs-ganesha-server      default         1               2024-09-23 19:27:27.694125 -0500 -05    deployed        nfs-server-provisioner-1.8.0    4.0.8
 ```
+
+## References
+
+- [NFS Ganesha Server](https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/master/charts/nfs-server-provisioner/README.md)
