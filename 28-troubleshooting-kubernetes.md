@@ -181,4 +181,5 @@ Tue Sep 24 13:57:10 UTC 2024: I am a busybox container
 k logs busybox --all-containers -f
 ```
 
-Press `Control-C` to get the prompt back.tr
+Press `Control-C` to get the prompt back.
+
