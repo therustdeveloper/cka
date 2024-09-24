@@ -39,7 +39,7 @@ systemctl daemon-reload
 ## Create a tool to run commands using Alpine
 
 ```shell
-k run tool --image alpine -it -- sh
+k run tool --image alpine -it --rm -- sh
 If you don't see a command prompt, try pressing enter.
 / #
 ```
