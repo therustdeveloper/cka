@@ -29,6 +29,8 @@
 - [24 - Storage in Kubernetes](24-storage-in-kubernetes.md)
 - [25 - Install NFS Server](25-install-nfs-server.md)
 - [26 - HostPath Implementation with NFS](26-hostpath-implementation-with-nfs.md)
+- [27 - Volume in Block Mode](27-volume-in-block-mode.md)
+- [28 - Troubleshooting Kubernetes](28-troubleshooting-kubernetes.md)
 
 ## Notes
 
