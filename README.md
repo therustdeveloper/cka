@@ -32,6 +32,10 @@
 - [27 - Volume in Block Mode](27-volume-in-block-mode.md)
 - [28 - Troubleshooting Kubernetes](28-troubleshooting-kubernetes.md)
 
+## Labs
+
+- [01 - Contexts](labs/01-contexts.md)
+
 ## Notes
 
 - [99 - To Remember](99-to-remember.md)
