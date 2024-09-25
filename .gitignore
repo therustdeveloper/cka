@@ -6,3 +6,10 @@
 **angelina.csr
 **csr-angelina.yaml
 **angelina.crt
+
+# labs files to ignore
+
+# contexts
+contexts.txt
+context_default_kubectl.sh
+context_default_no_kubectl.sh
