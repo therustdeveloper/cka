@@ -13,3 +13,6 @@
 contexts.txt
 context_default_kubectl.sh
 context_default_no_kubectl.sh
+
+# schedule pods on master nodes
+master_schedule_reason.txt
