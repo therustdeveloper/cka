@@ -183,3 +183,157 @@ k logs busybox --all-containers -f
 
 Press `Control-C` to get the prompt back.
 
+## Cluster Component Failure
+
+- Control Plane components such as the scheduler, controller manager, etcd, and API Server, all run as Pods on the control plane node in the kube-system namespace
+- The YAML manifests for these control plane components are located in the `/etc/kubernetes/manifests` directory in the control plane node
+- The are called static Pods because the scheduler it not aware of these Pods
+
+### Create single cluster node
+
+Use the instructions to create a single cluster node that you can find [here](00-create-cluster.md#create-a-single-node).
+
+### Create a namespace
+
+```shell
+k create namespace ee8881
+namespace/ee8881 created
+```
+
+### Change the context namespace
+
+```shell
+k config set-context --current --namespace ee8881
+Context "kind-cka" modified.
+```
+
+### Create a Deployment in the Namespace
+
+```shell
+k create deploy prod-app --image nginx
+deployment.apps/prod-app created
+```
+
+### Get the Deployment and Pods
+
+```shell
+k get deploy,pod
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/prod-app   0/1     1            0           40s
+
+NAME                            READY   STATUS              RESTARTS   AGE
+pod/prod-app-678bf6d75b-rjsfd   0/1     ContainerCreating   0          40s
+```
+
+### Simulate a control plane failure
+
+```shell
+docker exec -it cka-control-plane bash
+root@cka-control-plane:/# curl https://raw.githubusercontent.com/chadmcrowell/acing-the-cka-exam/main/ch_08/kube-scheduler.yaml --silent --output /etc/kubernetes/manifests/kube-scheduler.yaml
+exit
+```
+
+### Scale the Deployment from one replica to three
+
+```shell
+k scale deploy prod-app --replicas 3
+deployment.apps/prod-app scaled
+```
+
+### Validate the Pods
+
+```shell
+k get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+prod-app-678bf6d75b-mx89m   0/1     Pending   0          37s
+prod-app-678bf6d75b-nlw92   0/1     Pending   0          37s
+prod-app-678bf6d75b-rjsfd   1/1     Running   0          6m30s
+```
+
+New Pods should be on `Pending` state.
+
+### Get the Scheduler Pods
+
+```shell
+k get pods -n kube-system
+NAME                                        READY   STATUS             RESTARTS      AGE
+coredns-76f75df574-fmsp8                    1/1     Running            0             17m
+coredns-76f75df574-wgn8v                    1/1     Running            0             17m
+etcd-cka-control-plane                      1/1     Running            0             17m
+kindnet-skc5h                               1/1     Running            0             17m
+kube-apiserver-cka-control-plane            1/1     Running            0             17m
+kube-controller-manager-cka-control-plane   1/1     Running            0             17m
+kube-proxy-bcjtd                            1/1     Running            0             17m
+kube-scheduler-cka-control-plane            0/1     CrashLoopBackOff   5 (21s ago)   3m35s
+```
+
+### Get the Scheduler Logs
+
+```shell
+k logs kube-scheduler-cka-control-plane -n kube-system | tail -2
+
+Error: unknown flag: --kkubeconfig
+```
+
+There is misspelling in the flag.
+
+### Connect to the control plane node
+
+```shell
+docker exec -it cka-control-plane bash
+root@cka-control-plane:/#
+```
+
+### Install VIM
+
+```shell
+root@cka-control-plane:/# apt update && apt install vim -y
+```
+
+### Go to Kubernetes Manifest Directory
+
+```shell
+root@cka-control-plane:/# cd /etc/kubernetes/manifests/
+root@cka-control-plane:/etc/kubernetes/manifests# 
+```
+
+### Edit the kube-scheduler.yaml file
+
+```shell
+vim kube-scheduler.yaml
+```
+
+### Search for kkubeconfig
+
+```shell
+# The line should be:
+- --kubeconfig=/etc/kubernetes/scheduler.conf
+# Remove the additional k and save the file
+exit
+```
+
+### Validate the Pods
+
+```shell
+k get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+prod-app-678bf6d75b-mx89m   1/1     Running   0          12m
+prod-app-678bf6d75b-nlw92   1/1     Running   0          12m
+prod-app-678bf6d75b-rjsfd   1/1     Running   0          17m
+```
+
+### Validate the scheduler state
+
+```shell
+k get pods -n kube-system
+
+NAME                                        READY   STATUS    RESTARTS   AGE
+coredns-76f75df574-fmsp8                    1/1     Running   0          27m
+coredns-76f75df574-wgn8v                    1/1     Running   0          27m
+etcd-cka-control-plane                      1/1     Running   0          27m
+kindnet-skc5h                               1/1     Running   0          27m
+kube-apiserver-cka-control-plane            1/1     Running   0          27m
+kube-controller-manager-cka-control-plane   1/1     Running   0          27m
+kube-proxy-bcjtd                            1/1     Running   0          27m
+kube-scheduler-cka-control-plane            1/1     Running   0          38s
+```
