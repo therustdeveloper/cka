@@ -36,6 +36,7 @@
 
 - [01 - Contexts](labs/01-contexts.md)
 - [02 - Schedule Pod on Master Node](labs/02-schedule-pod-on-master-node.md)
+- [03 - Scale Down StatefulSet](labs/03-scale-down-statefulset.md)
 
 ## Notes
 
