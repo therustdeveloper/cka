@@ -19,3 +19,7 @@ master_schedule_reason.txt
 
 # pod ready if service is reachable
 4_pod1.yaml
+
+# kubectl sorting
+find_pods.sh
+find_pods_uid.sh
