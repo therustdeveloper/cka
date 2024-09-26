@@ -36,7 +36,8 @@
 
 - [01 - Contexts](labs/01-contexts.md)
 - [02 - Schedule Pod on Master Node](labs/02-schedule-pod-on-master-node.md)
-- [03 - Scale Down StatefulSet](labs/03-scale-down-statefulset.md)
+- [03 - Scale Down StatefulSet - 1%](labs/03-scale-down-statefulset.md)
+- [04 - Pod Ready if Service is Reachable - 4%](labs/04-pod-ready-if-service-is-reachable.md)
 
 ## Notes
 

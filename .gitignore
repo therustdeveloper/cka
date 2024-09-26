@@ -16,3 +16,6 @@ context_default_no_kubectl.sh
 
 # schedule pods on master nodes
 master_schedule_reason.txt
+
+# pod ready if service is reachable
+4_pod1.yaml
