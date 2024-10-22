@@ -1,5 +1,22 @@
 # Linux Services
 
+## Get Cluster Nodes
+
+````shell
+k get nodes
+NAME                STATUS   ROLES           AGE     VERSION
+cka-control-plane   Ready    control-plane   6m17s   v1.29.0
+cka-worker          Ready    <none>          5m55s   v1.29.0
+cka-worker2         Ready    <none>          5m59s   v1.29.0
+````
+
+## Connect to Docker Container
+
+```shell
+docker exec -it cka-control-plane bash 
+root@cka-control-plane:/#
+```
+
 ## List services in Linux
 
 To see a list of all services on your Linux system, type the following command:
