@@ -32,6 +32,7 @@
 - [27 - Volume in Block Mode](27-volume-in-block-mode.md)
 - [28 - Troubleshooting Kubernetes](28-troubleshooting-kubernetes.md)
 - [29 - Network Troubleshooting](29-network-troubleshooting.md)
+- [30 - Troubleshooting Services](30-troubleshooting-services.md)
 
 ## Labs
 
