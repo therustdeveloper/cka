@@ -23,3 +23,7 @@ master_schedule_reason.txt
 # kubectl sorting
 find_pods.sh
 find_pods_uid.sh
+
+6-pv.yaml
+6-pvc.yaml
+6-deploy.yaml
